@@ -173,15 +173,26 @@
 
   /* ─── INFO BAR ─── */
   .info-bar {
-    padding: 20px 56px;
     border-bottom: 1px solid var(--border);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, auto) 1fr;
   }
 
-  .info-item { display: flex; align-items: center; gap: 10px; }
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-right: 1px solid var(--border);
+  }
+
+  .info-item:first-child {
+    padding-left: 56px;
+  }
+
+  .info-item:last-child {
+    border-right: none;
+  }
 
   .info-label {
     font-size: 10px;
@@ -189,6 +200,7 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent);
+    white-space: nowrap;
   }
 
   .info-value {
@@ -196,7 +208,23 @@
     color: var(--text);
   }
 
-  .info-sep { color: var(--border); font-size: 18px; }
+  .info-sep { display: none; }
+
+  @media (max-width: 900px) {
+    .info-bar {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .info-item:first-child { padding-left: 24px; }
+    .info-item:nth-child(2) { border-right: none; }
+    .info-item:nth-child(3) { border-top: 1px solid var(--border); }
+    .info-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+  }
+
+  @media (max-width: 540px) {
+    .info-bar { grid-template-columns: 1fr; }
+    .info-item { border-right: none !important; border-top: 1px solid var(--border); }
+    .info-item:first-child { border-top: none; }
+  }
 
   /* ─── BOTTOM SECTIONS ─── */
   .bottom-grid {
@@ -590,17 +618,14 @@
     <span class="info-label">Age</span>
     <span class="info-value">27</span>
   </div>
-  <span class="info-sep">|</span>
   <div class="info-item">
     <span class="info-label">Location</span>
     <span class="info-value">Brazil — União da Vitória (PR)</span>
   </div>
-  <span class="info-sep">|</span>
   <div class="info-item">
     <span class="info-label">Contact</span>
     <span class="info-value">studio@gabicanena.com &nbsp;·&nbsp; +55 (42) 9 9996-2154</span>
   </div>
-  <span class="info-sep">|</span>
   <div class="info-item">
     <span class="info-label">Languages</span>
     <span class="info-value">Portuguese: Native &nbsp;·&nbsp; English: C1 Advanced</span>
